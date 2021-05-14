@@ -1,32 +1,17 @@
-import React, { Component } from "react";
+import React from "react";
+import "./App.css";
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      username: null,
-    };
-  }
-
-  componentDidMount() {
-    fetch("api")
-      .then((res) => {
-        res.json();
-      })
-      .then((data) => this.setState({ username: data.username }));
-  }
-
-  render() {
-    const { username } = this.state;
-
-    return (
-      <div className="App">
-        <header className="App-header">
-          {username ? `Hello ${username}` : "Hello World"}
-        </header>
-      </div>
-    );
-  }
+function App() {
+  return (
+    <div className="App">
+      <form action="/">
+        <input type="text" name="summoner" id="summoner" />
+        <button type="submit">
+          <i className="fas fa-search" />
+        </button>
+      </form>
+    </div>
+  );
 }
 
 export default App;
