@@ -7,21 +7,10 @@ html {
   height: 100vh;
 }
 
-.App form {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.App form * {
-  display: flex;
-}
-
-.App form input {
-  width: 30vw;
-  height: 40px;
-  opacity: 0.5;
-  border-radius: 25px;
-  border: none;
+.App h5 {
+  text-align: center;
+  color: white;
+  font-size: 300%;
+  margin: 0px;
+  margin-bottom: 10px;
 }
