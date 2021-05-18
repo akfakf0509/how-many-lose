@@ -6,11 +6,3 @@ html {
   width: 100vw;
   height: 100vh;
 }
-
-.App h5 {
-  text-align: center;
-  color: white;
-  font-size: 300%;
-  margin: 0px;
-  margin-bottom: 10px;
-}
