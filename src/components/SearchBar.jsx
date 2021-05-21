@@ -19,7 +19,7 @@ function SearchBar({ onSubmit }) {
         <input type="text" name="summoner" id="summoner" />
         <span />
         <button type="submit">
-          <FontAwesomeIcon icon={faSearch} size="2x" color="gray" />
+          <FontAwesomeIcon icon={faSearch} size="2x" color="#555555" />
         </button>
       </div>
     </form>

@@ -60,7 +60,7 @@ form .search-bar span {
   width: 30vw;
   height: 40px;
   background: white;
-  opacity: 0.5;
+  opacity: 0.6;
   border-radius: 25px;
   z-index: -1;
   transition: 0.4s;
@@ -76,4 +76,5 @@ form .search-bar button {
   border-radius: 100%;
   text-align: center;
   background: none;
+  margin-right: 10px;
 }
