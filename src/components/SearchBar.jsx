@@ -1,17 +1,23 @@
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useDispatch } from "react-redux";
 import React from "react";
 import "./SearchBar.css";
-import PropTypes from "prop-types";
 
-function SearchBar({ onSubmit }) {
+function SearchBar() {
+  const dispatch = useDispatch();
+
   return (
     <form
       action="/summoner"
       method="post"
       onSubmit={(e) => {
         e.preventDefault();
-        onSubmit(e.target.summoner.value);
+
+        dispatch({
+          type: "SEARCH",
+          summoner: fetch(`/riot-api?name=${e.target.summoner.value}`),
+        });
       }}
     >
       <h5>Why You Lose?</h5>
@@ -25,9 +31,5 @@ function SearchBar({ onSubmit }) {
     </form>
   );
 }
-
-SearchBar.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
-};
 
 export default SearchBar;

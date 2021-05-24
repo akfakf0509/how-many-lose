@@ -13,9 +13,9 @@ app.use(bodyParser.json());
 app.use("/api", route);
 app.use("/riot-api", (req, res) => {
   const options = {
-    url: "https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/kata%2095D",
+    url: `https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/${req.params.name}`,
     qs: {
-      api_key: "RGAPI-9f8916aa-ab26-4e6f-83fc-50759b797fdf",
+      api_key: "RGAPI-6bc3d1be-9486-4507-96c9-66d2bc41da06",
     },
   };
 
