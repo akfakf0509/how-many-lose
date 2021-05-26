@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
+import ResultRoot from "./Components/ResultRoot";
 import SearchBar from "./Components/SearchBar";
 import store from "./store";
 
@@ -29,7 +30,7 @@ class App extends Component {
       currentContent = <SearchBar />;
     }
     if (mode === "INFORMATION") {
-      currentContent = "";
+      currentContent = <ResultRoot />;
     }
 
     return currentContent;
