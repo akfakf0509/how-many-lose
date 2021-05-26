@@ -3,20 +3,15 @@ import { createStore } from "redux";
 export default createStore((state, action) => {
   if (state === undefined) {
     return {
-      summoner: {
-        id: "",
-        accountId: "",
-        puuid: "",
-        name: "",
-        profileIconId: 0,
-        revisionDate: 0,
-        summonerLevel: 0,
-      },
+      summoner: action.summoner,
     };
   }
 
   if (action.type === "SEARCH") {
-    return { ...state, summoner: action.summoner };
+    return {
+      ...state,
+      summoner: action.summoner,
+    };
   }
 
   return state;

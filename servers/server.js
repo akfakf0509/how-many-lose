@@ -13,9 +13,9 @@ app.use(bodyParser.json());
 app.use("/api", route);
 app.use("/riot-api", (req, res) => {
   const options = {
-    url: `https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/${req.params.name}`,
+    url: `https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/${req.query.name}`,
     qs: {
-      api_key: "RGAPI-6bc3d1be-9486-4507-96c9-66d2bc41da06",
+      api_key: "RGAPI-57ae7555-7b7d-4954-84ac-a1a7b11789ad",
     },
   };
 

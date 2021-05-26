@@ -14,10 +14,14 @@ function SearchBar() {
       onSubmit={(e) => {
         e.preventDefault();
 
-        dispatch({
-          type: "SEARCH",
-          summoner: fetch(`/riot-api?name=${e.target.summoner.value}`),
-        });
+        fetch(`/riot-api?name=${e.target.summoner.value}`)
+          .then((response) => response.json())
+          .then((response) => {
+            dispatch({
+              type: "SEARCH",
+              summoner: response,
+            });
+          });
       }}
     >
       <h5>Why You Lose?</h5>
