@@ -1,5 +1,5 @@
 .result-root {
-    position: absolute;
+  position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
@@ -7,9 +7,15 @@
 }
 
 h1 {
-    text-align: center;
+  text-align: center;
 }
 
 .container {
-    width: 70vw;
+  width: 70vw;
+}
+
+.btn-back {
+  background: transparent;
+  border: none;
+  margin: 20px;
 }
