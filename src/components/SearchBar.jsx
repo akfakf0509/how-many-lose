@@ -2,7 +2,7 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useDispatch } from "react-redux";
 import React from "react";
-import "./SearchBar.css";
+import "../css/SearchBar.css";
 
 function SearchBar() {
   const dispatch = useDispatch();
@@ -14,13 +14,21 @@ function SearchBar() {
       onSubmit={(e) => {
         e.preventDefault();
 
-        fetch(`/riot-api?name=${e.target.summoner.value}`)
+        fetch(`/riot-api/summoner/info?name=${e.target.summoner.value}`)
           .then((response) => response.json())
           .then((response) => {
             dispatch({
               type: "SEARCH",
               summoner: response,
             });
+
+            fetch(
+              `/riot-api/summoner/games?puuid=${response.puuid}&start=0&count=20`
+            )
+              .then((res) => res.json())
+              .then((res) => {
+                console.log(res);
+              });
           });
       }}
     >

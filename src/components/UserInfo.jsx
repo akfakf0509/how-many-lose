@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import store from "../store";
-import "./UserInfo.css";
+import "../css/UserInfo.css";
 
 class UserInfo extends Component {
   constructor(props) {
@@ -11,11 +11,12 @@ class UserInfo extends Component {
     this.state = {
       profileIconId: storeState.summoner.profileIconId,
       name: storeState.summoner.name,
+      summonerLevel: storeState.summoner.summonerLevel,
     };
   }
 
   render() {
-    const { profileIconId, name } = this.state;
+    const { profileIconId, name, summonerLevel } = this.state;
 
     return (
       <div className="profile-container">
@@ -25,7 +26,10 @@ class UserInfo extends Component {
           alt="Summoner Icon"
           width="128px"
         />
-        <p>{name}</p>
+        <div className="profile-info">
+          <h1>{name}</h1>
+          <span>Level {summonerLevel}</span>
+        </div>
       </div>
     );
   }

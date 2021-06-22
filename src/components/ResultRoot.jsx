@@ -2,18 +2,24 @@ import { faBackspace } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { Component } from "react";
 import store from "../store";
-import "./ResultRoot.css";
+import "../css/ResultRoot.css";
 import UserInfo from "./UserInfo";
 
 class ResultRoot extends Component {
-  getUserInfo() {
-    let currentContent = "";
+  constructor(props) {
+    super(props);
 
+    this.currentContent = "";
+  }
+
+  getUserInfo() {
     if (store.getState().summoner.name) {
-      currentContent = <UserInfo />;
+      this.currentContent = <UserInfo />;
+    } else {
+      this.currentContent = "User is undefined";
     }
 
-    return currentContent;
+    return this.currentContent;
   }
 
   render() {
@@ -24,7 +30,7 @@ class ResultRoot extends Component {
           onClick={(e) => {
             e.preventDefault();
 
-            dispatch({ type: "SEARCH", summoner: null });
+            store.dispatch({ type: "SEARCH", summoner: null });
           }}
           className="btn-back"
         >
