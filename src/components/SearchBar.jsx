@@ -21,14 +21,6 @@ function SearchBar() {
               type: "SEARCH",
               summoner: response,
             });
-
-            fetch(
-              `/riot-api/summoner/games?puuid=${response.puuid}&start=0&count=20`
-            )
-              .then((res) => res.json())
-              .then((res) => {
-                console.log(res);
-              });
           });
       }}
     >

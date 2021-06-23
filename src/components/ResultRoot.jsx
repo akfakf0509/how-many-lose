@@ -13,8 +13,16 @@ class ResultRoot extends Component {
   }
 
   getUserInfo() {
-    if (store.getState().summoner.name) {
+    const { summoner } = store.getState();
+
+    if (summoner.name) {
       this.currentContent = <UserInfo />;
+
+      fetch(`/riot-api/summoner/games?puuid=${summoner.puuid}&start=0&count=20`)
+        .then((res) => res.json())
+        .then((res) => {
+          console.log(res);
+        });
     } else {
       this.currentContent = "User is undefined";
     }

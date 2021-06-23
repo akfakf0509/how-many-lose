@@ -6,7 +6,7 @@ const route = require("./routes/index");
 
 const app = express();
 const port = process.env.port || 3001;
-const apiKey = "RGAPI-b863b6ee-e404-40a9-a213-f91c4640ac2f";
+const apiKey = "RGAPI-4171bbd0-38d1-480f-b552-14bb9b81888c";
 
 app.use(cors());
 
@@ -21,7 +21,9 @@ app.use("/riot-api/summoner/info", (req, res) => {
   };
 
   request(options, (e, r) => {
-    res.json(JSON.parse(r.body));
+    if (r) {
+      res.json(JSON.parse(r.body));
+    }
   });
 });
 
