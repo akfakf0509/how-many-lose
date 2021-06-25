@@ -4,6 +4,7 @@ import React, { Component } from "react";
 import store from "../store";
 import "../css/ResultRoot.css";
 import UserInfo from "./UserInfo";
+import GamesRoot from "./GamesRoot";
 
 class ResultRoot extends Component {
   constructor(props) {
@@ -17,12 +18,6 @@ class ResultRoot extends Component {
 
     if (summoner.name) {
       this.currentContent = <UserInfo />;
-
-      fetch(`/riot-api/summoner/games?puuid=${summoner.puuid}&start=0&count=20`)
-        .then((res) => res.json())
-        .then((res) => {
-          console.log(res);
-        });
     } else {
       this.currentContent = "User is undefined";
     }
@@ -46,7 +41,10 @@ class ResultRoot extends Component {
         </button>
         <div className="result-root">
           <h1>Why You Lose?</h1>
-          <div className="container">{this.getUserInfo()}</div>
+          <div className="container">
+            {this.getUserInfo()}
+            <GamesRoot />
+          </div>
         </div>
       </div>
     );
