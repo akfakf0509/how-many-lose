@@ -27,7 +27,7 @@ class ResultRoot extends Component {
 
   render() {
     return (
-      <div>
+      <div className="result-root">
         <button
           type="button"
           onClick={(e) => {
@@ -39,7 +39,7 @@ class ResultRoot extends Component {
         >
           <FontAwesomeIcon icon={faBackspace} size="3x" color="white" />
         </button>
-        <div className="result-root">
+        <div>
           <h1>Why You Lose?</h1>
           <div className="container">
             {this.getUserInfo()}

@@ -5,14 +5,16 @@ const request = require("request");
 
 const app = express();
 const port = process.env.port || 3001;
-const apiKey = "RGAPI-61de3ba1-289f-4df6-8d08-1ade776752a2";
+const apiKey = "RGAPI-11b935b0-e853-40f9-8c10-fb292669ec8f";
 
 app.use(cors());
 
 app.use(bodyParser.json());
 app.use("/riot-api/summoner/info", (req, res) => {
   const options = {
-    url: `https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/${req.query.name}`,
+    url: `https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/${encodeURI(
+      req.query.name
+    )}`,
     qs: {
       api_key: apiKey,
     },

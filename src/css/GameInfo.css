@@ -1,0 +1,31 @@
+.game-info {
+  background: white;
+  color: black;
+  border-radius: 5px;
+  margin: 10px 0px;
+  height: 100px;
+}
+
+.game-whether-win {
+  position: absolute;
+  background: gray;
+  width: 50px;
+  height: 100px;
+  border-radius: 5px 0px 0px 5px;
+}
+
+.game-whether-win p {
+  margin: 0px;
+  color: white;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  line-height: 100px;
+  font-weight: 900;
+  font-size: 120%;
+}
+
+.game-content {
+  padding: 15px;
+  padding-left: 60px;
+}

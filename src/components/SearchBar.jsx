@@ -15,11 +15,15 @@ function SearchBar() {
         e.preventDefault();
 
         fetch(`/riot-api/summoner/info?name=${e.target.summoner.value}`)
-          .then((response) => response.json())
-          .then((response) => {
+          .then((res) => res.json())
+          .then((res) => {
+            if (res.status) {
+              return;
+            }
+
             dispatch({
               type: "SEARCH",
-              summoner: response,
+              summoner: res,
             });
           });
       }}

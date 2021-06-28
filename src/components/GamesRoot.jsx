@@ -15,9 +15,15 @@ class GamesRoot extends Component {
     const { summoner } = store.getState();
 
     if (summoner.name) {
-      fetch(`/riot-api/summoner/games?puuid=${summoner.puuid}&start=0&count=20`)
+      fetch(`/riot-api/summoner/games?puuid=${summoner.puuid}&start=0&count=10`)
         .then((res) => res.json())
         .then((res) => {
+          if (res.status) {
+            this.setState({ gameInfos: res.status.message });
+
+            return;
+          }
+
           let index = -1;
 
           const gameInfos = res.map((e) => {
