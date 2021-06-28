@@ -3,14 +3,14 @@
   color: black;
   border-radius: 5px;
   margin: 10px 0px;
-  height: 100px;
+  height: 200px;
 }
 
 .game-whether-win {
   position: absolute;
   background: gray;
   width: 50px;
-  height: 100px;
+  height: 200px;
   border-radius: 5px 0px 0px 5px;
 }
 
@@ -20,7 +20,7 @@
   width: 100%;
   height: 100%;
   text-align: center;
-  line-height: 100px;
+  line-height: 200px;
   font-weight: 900;
   font-size: 120%;
 }
@@ -28,4 +28,44 @@
 .game-content {
   padding: 15px;
   padding-left: 60px;
+  display: flex;
+}
+
+.game-content-team {
+  list-style: none;
+}
+
+.game-content-team1 {
+  text-align: right;
+}
+
+.game-content-team2 {
+  text-align: left;
+}
+
+.game-content-current-summoner {
+  font-weight: 700;
+}
+
+.game-content-container-kda {
+  min-width: 100px;
+  display: inline-block;
+}
+
+.game-content-kda {
+  padding: 0px 3px;
+  width: 20px;
+  font-weight: 500;
+  display: inline-block;
+  text-align-last: center;
+}
+
+.game-content-deaths {
+  color: red;
+}
+
+.game-content-contour {
+  color: darkgray;
+  font-size: 90%;
+  font-weight: 100;
 }
