@@ -8,14 +8,27 @@ class GamesRoot extends Component {
 
     this.state = {
       gameInfos: [],
+      loadedGamed: 0,
     };
   }
 
   componentDidMount() {
+    this.loadNewGames();
+    window.addEventListener("scroll", this.scrollBottom.bind(this));
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("scroll", this.scrollBottom.bind(this));
+  }
+
+  loadNewGames() {
+    const { gameInfos, loadedGamed } = this.state;
     const { summoner } = store.getState();
 
     if (summoner.name) {
-      fetch(`/riot-api/summoner/games?puuid=${summoner.puuid}&start=0&count=10`)
+      fetch(
+        `/riot-api/summoner/games?puuid=${summoner.puuid}&start=${loadedGamed}&count=10`
+      )
         .then((res) => res.json())
         .then((res) => {
           if (res.status) {
@@ -24,15 +37,28 @@ class GamesRoot extends Component {
             return;
           }
 
-          let index = -1;
+          let index = loadedGamed - 1;
 
-          const gameInfos = res.map((e) => {
+          const newGameInfos = res.map((e) => {
             index += 1;
             return <GameInfo gameId={e} key={index} />;
           });
 
-          this.setState({ gameInfos });
+          this.setState({ gameInfos: gameInfos.concat(newGameInfos) });
         });
+
+      this.setState({ loadedGamed: loadedGamed + 10 });
+    }
+  }
+
+  scrollBottom(e) {
+    const { scrollingElement } = e.target;
+
+    if (
+      scrollingElement.scrollHeight - scrollingElement.scrollTop ===
+      scrollingElement.clientHeight
+    ) {
+      this.loadNewGames();
     }
   }
 

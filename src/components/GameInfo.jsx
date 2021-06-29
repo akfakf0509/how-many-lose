@@ -70,7 +70,7 @@ class GameInfo extends Component {
       gameCreation = `${Math.floor(gameCreation)}일`;
     } else if (gameCreation > 60 * 60) {
       gameCreation /= 60 * 60;
-      gameCreation = `${Math.floor(gameCreation)}시`;
+      gameCreation = `${Math.floor(gameCreation)}시간`;
     } else if (gameCreation > 60) {
       gameCreation /= 60;
       gameCreation = `${Math.floor(gameCreation)}분`;
