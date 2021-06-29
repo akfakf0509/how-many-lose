@@ -31,6 +31,10 @@
   display: flex;
 }
 
+.game-content-participants {
+  display: flex;
+}
+
 .game-content-team {
   list-style: none;
 }
