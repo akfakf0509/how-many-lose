@@ -25,10 +25,9 @@ class GameInfo extends Component {
           return;
         }
 
-        this.setState({ game: res });
         res.info.participants.forEach((e) => {
           if (summoner.name === e.summonerName) {
-            this.setState({ win: e.win, currentSummoner: e });
+            this.setState({ win: e.win, currentSummoner: e, game: res });
           }
         });
       });
@@ -59,10 +58,18 @@ class GameInfo extends Component {
   }
 
   getInfoContent() {
+    const { queueJSON } = this.props;
     const { game } = this.state;
 
+    let queueDescription;
     let gameCreation = Date.now() - game.info.gameCreation;
     let { gameDuration } = game.info;
+
+    queueJSON.forEach((e) => {
+      if (game.info.queueId === e.queueId) {
+        queueDescription = e.description;
+      }
+    });
 
     gameCreation /= 1000;
     if (gameCreation > 60 * 60 * 24) {
@@ -83,11 +90,54 @@ class GameInfo extends Component {
 
     return (
       <div>
-        <p>{game.info.gameMode}</p>
+        <p>{queueDescription}</p>
         <p>{gameCreation} 전</p>
         <p>{gameDuration}</p>
       </div>
     );
+  }
+
+  getChampionImage() {
+    const { currentSummoner } = this.state;
+    const { summonerJSON } = this.props;
+
+    let currentComponent;
+    let currentSpell1;
+    let currentSpell2;
+
+    Object.keys(summonerJSON).forEach((e) => {
+      if (Number(summonerJSON[e].key) === currentSummoner.summoner1Id) {
+        currentSpell1 = summonerJSON[e];
+      } else if (Number(summonerJSON[e].key) === currentSummoner.summoner2Id) {
+        currentSpell2 = summonerJSON[e];
+      }
+    });
+
+    if (currentSpell1 && currentSpell2) {
+      currentComponent = (
+        <div className="game-content-summoner-info">
+          <img
+            className="game-content-main-champion-image"
+            alt="Main Champion"
+            src={`https://ddragon.leagueoflegends.com/cdn/11.13.1/img/champion/${currentSummoner.championName}.png`}
+          />
+          <div className="game-content-spells">
+            <img
+              className="game-content-spells-image"
+              alt="Spell 1"
+              src={`https://ddragon.leagueoflegends.com/cdn/11.13.1/img/spell/${currentSpell1.id}.png`}
+            />
+            <img
+              className="game-content-spells-image"
+              alt="Spell 2"
+              src={`https://ddragon.leagueoflegends.com/cdn/11.13.1/img/spell/${currentSpell2.id}.png`}
+            />
+          </div>
+        </div>
+      );
+    }
+
+    return currentComponent;
   }
 
   getParticipantsContent() {
@@ -102,7 +152,11 @@ class GameInfo extends Component {
     for (let i = 0; i < 10; i += 1) {
       const isCurrentSummoner =
         participants[i].summonerName === currentSummoner.summonerName;
-      currentComponent = <span>{participants[i].summonerName}</span>;
+      currentComponent = (
+        <span className="game-content-summoner-name">
+          {participants[i].summonerName}
+        </span>
+      );
       const currentComponent1 = (
         <span className="game-content-container-kda">
           <span className="game-content-kda">{participants[i].kills}</span>
@@ -122,20 +176,34 @@ class GameInfo extends Component {
       if (i < 5) {
         team1.push(
           <li
-            className={isCurrentSummoner ? "game-content-current-summoner" : ""}
+            className={`game-content-item${
+              isCurrentSummoner ? "game-content-current-summoner" : ""
+            }`}
             key={i}
           >
             {currentComponent}
+            <img
+              className="game-content-champion-name"
+              alt="Main Champion"
+              src={`https://ddragon.leagueoflegends.com/cdn/11.13.1/img/champion/${participants[i].championName}.png`}
+            />
             {currentComponent1}
           </li>
         );
       } else {
         team2.push(
           <li
-            className={isCurrentSummoner ? "game-content-current-summoner" : ""}
+            className={`game-content-item${
+              isCurrentSummoner ? "game-content-current-summoner" : ""
+            }`}
             key={i}
           >
             {currentComponent1}
+            <img
+              className="game-content-champion-name"
+              alt="Main Champion"
+              src={`https://ddragon.leagueoflegends.com/cdn/11.13.1/img/champion/${participants[i].championName}.png`}
+            />
             {currentComponent}
           </li>
         );
@@ -158,6 +226,7 @@ class GameInfo extends Component {
     if (game.info) {
       currentComponent = (
         <div className="game-content">
+          {this.getChampionImage()}
           {this.getInfoContent()}
           {this.getParticipantsContent()}
         </div>
@@ -180,6 +249,15 @@ class GameInfo extends Component {
 
 GameInfo.propTypes = {
   gameId: PropTypes.string.isRequired,
+  summonerJSON: PropTypes.shape().isRequired,
+  queueJSON: PropTypes.arrayOf(
+    PropTypes.shape({
+      queueId: PropTypes.number.isRequired,
+      map: PropTypes.string.isRequired,
+      description: PropTypes.string,
+      notes: PropTypes.string,
+    })
+  ).isRequired,
 };
 
 export default GameInfo;

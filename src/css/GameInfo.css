@@ -29,6 +29,36 @@
   padding: 15px;
   padding-left: 60px;
   display: flex;
+  vertical-align: middle;
+}
+
+.game-content-summoner-info {
+  text-align: center;
+}
+
+.game-content-item {
+  white-space: nowrap;
+}
+
+.game-content-main-champion-image {
+  width: 100px;
+  height: 100px;
+  border-radius: 50px;
+  margin: 15px;
+  margin-bottom: 5px;
+}
+
+.game-content-spells-image {
+  width: 32px;
+  height: 32px;
+  margin: 2px;
+}
+
+.game-content-champion-name {
+  width: 22px;
+  height: 22px;
+  vertical-align: middle;
+  margin: 3px;
 }
 
 .game-content-participants {
@@ -45,6 +75,10 @@
 
 .game-content-team2 {
   text-align: left;
+}
+
+.game-content-summoner-name {
+  display: inline-block;
 }
 
 .game-content-current-summoner {

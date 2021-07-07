@@ -7,13 +7,27 @@ class GamesRoot extends Component {
     super(props);
 
     this.state = {
+      queueJSON: [],
+      summonerJSON: {},
       gameInfos: [],
       loadedGamed: 0,
     };
   }
 
   componentDidMount() {
-    this.loadNewGames();
+    fetch("https://static.developer.riotgames.com/docs/lol/queues.json")
+      .then((res) => res.json())
+      .then((queueJSON) => {
+        fetch(
+          "https://ddragon.leagueoflegends.com/cdn/11.13.1/data/ko_KR/summoner.json"
+        )
+          .then((res) => res.json())
+          .then((res) => {
+            this.setState({ queueJSON, summonerJSON: res });
+            this.loadNewGames();
+          });
+      });
+
     window.addEventListener("scroll", this.scrollBottom.bind(this));
   }
 
@@ -22,7 +36,7 @@ class GamesRoot extends Component {
   }
 
   loadNewGames() {
-    const { gameInfos, loadedGamed } = this.state;
+    const { queueJSON, summonerJSON, gameInfos, loadedGamed } = this.state;
     const { summoner } = store.getState();
 
     if (summoner.name) {
@@ -41,7 +55,14 @@ class GamesRoot extends Component {
 
           const newGameInfos = res.map((e) => {
             index += 1;
-            return <GameInfo gameId={e} key={index} />;
+            return (
+              <GameInfo
+                key={index}
+                gameId={e}
+                summonerJSON={summonerJSON.data}
+                queueJSON={queueJSON}
+              />
+            );
           });
 
           this.setState({ gameInfos: gameInfos.concat(newGameInfos) });
@@ -64,7 +85,6 @@ class GamesRoot extends Component {
 
   render() {
     const { gameInfos } = this.state;
-
     return <div>{gameInfos}</div>;
   }
 }
