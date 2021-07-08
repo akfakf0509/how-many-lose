@@ -16,7 +16,9 @@ class ResultRoot extends Component {
   getUserInfo() {
     const { summoner } = store.getState();
 
-    if (summoner.name) {
+    if (summoner.status) {
+      this.currentContent = summoner.status.message;
+    } else if (summoner.name) {
       this.currentContent = <UserInfo />;
     } else {
       this.currentContent = "User is undefined";

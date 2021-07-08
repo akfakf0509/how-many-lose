@@ -54,6 +54,14 @@
   margin: 2px;
 }
 
+.game-content-info {
+  white-space: nowrap;
+}
+
+.game-content-info p {
+  margin: 0;
+}
+
 .game-content-champion-name {
   width: 22px;
   height: 22px;
@@ -63,6 +71,7 @@
 
 .game-content-participants {
   display: flex;
+  margin-left: auto;
 }
 
 .game-content-team {
@@ -79,6 +88,10 @@
 
 .game-content-summoner-name {
   display: inline-block;
+  width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: middle;
 }
 
 .game-content-current-summoner {

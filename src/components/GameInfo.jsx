@@ -89,7 +89,7 @@ class GameInfo extends Component {
     gameDuration = `${Math.floor(gameDuration)}분`;
 
     return (
-      <div>
+      <div className="game-content-info">
         <p>{queueDescription}</p>
         <p>{gameCreation} 전</p>
         <p>{gameDuration}</p>
@@ -176,7 +176,7 @@ class GameInfo extends Component {
       if (i < 5) {
         team1.push(
           <li
-            className={`game-content-item${
+            className={`game-content-item ${
               isCurrentSummoner ? "game-content-current-summoner" : ""
             }`}
             key={i}
@@ -193,7 +193,7 @@ class GameInfo extends Component {
       } else {
         team2.push(
           <li
-            className={`game-content-item${
+            className={`game-content-item ${
               isCurrentSummoner ? "game-content-current-summoner" : ""
             }`}
             key={i}
