@@ -5,7 +5,7 @@ const request = require("request");
 
 const app = express();
 const port = process.env.port || 3001;
-const apiKey = "RGAPI-ea6d34b3-eaa7-4622-a28b-942d22a925ff";
+const apiKey = "RGAPI-94bea414-9cdc-4093-88c0-c3f7b3e7db8d";
 
 app.use(cors());
 

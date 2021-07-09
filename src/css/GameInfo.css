@@ -30,6 +30,7 @@
   padding-left: 60px;
   display: flex;
   vertical-align: middle;
+  justify-content: space-around;
 }
 
 .game-content-summoner-info {
@@ -52,9 +53,11 @@
   width: 32px;
   height: 32px;
   margin: 2px;
+  border-radius: 3px;
 }
 
 .game-content-info {
+  text-align: center;
   white-space: nowrap;
 }
 
@@ -62,16 +65,39 @@
   margin: 0;
 }
 
+.game-content-container-items {
+  display: block;
+  width: 150px;
+  white-space: normal;
+  margin-top: auto;
+  margin: 5px;
+}
+
+.game-content-info-item {
+  display: inline-block;
+  width: 34px;
+  height: 34px;
+  margin: 3px 3px;
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 3px;
+}
+
+.game-content-info > .game-content-container-kda {
+  font-size: 150%;
+  width: 100%;
+  text-align: center;
+}
+
 .game-content-champion-name {
   width: 22px;
   height: 22px;
   vertical-align: middle;
   margin: 3px;
+  border-radius: 3px;
 }
 
 .game-content-participants {
   display: flex;
-  margin-left: auto;
 }
 
 .game-content-team {
@@ -80,6 +106,7 @@
 
 .game-content-team1 {
   text-align: right;
+  padding: 0;
 }
 
 .game-content-team2 {

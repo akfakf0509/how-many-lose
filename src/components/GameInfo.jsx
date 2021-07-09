@@ -57,9 +57,40 @@ class GameInfo extends Component {
     return currentComponent;
   }
 
+  getInfoItems() {
+    const { currentSummoner } = this.state;
+
+    const items = [
+      currentSummoner.item0,
+      currentSummoner.item1,
+      currentSummoner.item2,
+      currentSummoner.item3,
+      currentSummoner.item4,
+      currentSummoner.item5,
+    ];
+    const currentComponent = [null, null, null, null, null, null];
+
+    for (let i = 0; i < 6; i += 1) {
+      if (items[i] !== 0) {
+        currentComponent[i] = (
+          <img
+            key={i}
+            className="game-content-info-item"
+            alt={`item${i}`}
+            src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${items[i]}.png`}
+          />
+        );
+      } else {
+        currentComponent[i] = <div className="game-content-info-item" />;
+      }
+    }
+
+    return currentComponent;
+  }
+
   getInfoContent() {
     const { queueJSON } = this.props;
-    const { game } = this.state;
+    const { currentSummoner, game } = this.state;
 
     let queueDescription;
     let gameCreation = Date.now() - game.info.gameCreation;
@@ -91,8 +122,33 @@ class GameInfo extends Component {
     return (
       <div className="game-content-info">
         <p>{queueDescription}</p>
-        <p>{gameCreation} 전</p>
-        <p>{gameDuration}</p>
+        <p>
+          {gameCreation} 전<span className="game-content-contour"> / </span>
+          {gameDuration}
+        </p>
+        <div className="game-content-container-items">
+          {this.getInfoItems()}
+        </div>
+        <span className="game-content-container-kda">
+          <span className="game-content-kda" style={{ width: 30 }}>
+            {currentSummoner.kills}
+          </span>
+
+          <span className="game-content-contour">/</span>
+
+          <span
+            className="game-content-kda game-content-deaths"
+            style={{ width: 30 }}
+          >
+            {currentSummoner.deaths}
+          </span>
+
+          <span className="game-content-contour">/</span>
+
+          <span className="game-content-kda" style={{ width: 30 }}>
+            {currentSummoner.assists}
+          </span>
+        </span>
       </div>
     );
   }
