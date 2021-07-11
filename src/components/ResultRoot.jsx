@@ -1,4 +1,4 @@
-import { faBackspace } from "@fortawesome/free-solid-svg-icons";
+import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { Component } from "react";
 import store from "../store";
@@ -39,7 +39,7 @@ class ResultRoot extends Component {
           }}
           className="btn-back"
         >
-          <FontAwesomeIcon icon={faBackspace} size="3x" color="white" />
+          <FontAwesomeIcon icon={faChevronLeft} size="3x" color="#333" />
         </button>
         <div>
           <h1>Why You Lose?</h1>
