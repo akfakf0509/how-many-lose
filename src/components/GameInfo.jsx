@@ -42,13 +42,13 @@ class GameInfo extends Component {
       currentComponent = <div className="game-whether-win" />;
     } else if (win) {
       currentComponent = (
-        <div className="game-whether-win" style={{ background: "blue" }}>
+        <div className="game-whether-win" style={{ background: "#538FFE" }}>
           <p>승리</p>
         </div>
       );
     } else {
       currentComponent = (
-        <div className="game-whether-win" style={{ background: "red" }}>
+        <div className="game-whether-win" style={{ background: "#FF4475" }}>
           <p>패배</p>
         </div>
       );
