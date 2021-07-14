@@ -15,13 +15,15 @@ class GamesRoot extends Component {
   }
 
   componentDidMount() {
+    const { version } = store.getState();
+
     fetch(
       `https://static.developer.riotgames.com/docs/lol/queues.json?${Math.random()}`
     )
       .then((res) => res.json())
       .then((queueJSON) => {
         fetch(
-          "https://ddragon.leagueoflegends.com/cdn/11.14.1/data/ko_KR/summoner.json"
+          `https://ddragon.leagueoflegends.com/cdn/${version}/data/ko_KR/summoner.json`
         )
           .then((res) => res.json())
           .then((res) => {

@@ -58,6 +58,7 @@ class GameInfo extends Component {
   }
 
   getInfoItems() {
+    const { version } = store.getState();
     const { currentSummoner } = this.state;
 
     const items = [
@@ -77,7 +78,7 @@ class GameInfo extends Component {
             key={i}
             className="game-content-info-item"
             alt={`item${i}`}
-            src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/${items[i]}.png`}
+            src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/item/${items[i]}.png`}
           />
         );
       } else {
@@ -156,6 +157,7 @@ class GameInfo extends Component {
   }
 
   getChampionImage() {
+    const { version } = store.getState();
     const { currentSummoner } = this.state;
     const { summonerJSON } = this.props;
 
@@ -172,23 +174,27 @@ class GameInfo extends Component {
     });
 
     if (currentSpell1 && currentSpell2) {
+      if (currentSummoner.championName === "FiddleSticks") {
+        currentSummoner.championName = "Fiddlesticks";
+      }
+
       currentComponent = (
         <div className="game-content-summoner-info">
           <img
             className="game-content-main-champion-image"
             alt="Main Champion"
-            src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/champion/${currentSummoner.championName}.png`}
+            src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${currentSummoner.championName}.png`}
           />
           <div className="game-content-spells">
             <img
               className="game-content-spells-image"
               alt="Spell 1"
-              src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/spell/${currentSpell1.id}.png`}
+              src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/${currentSpell1.id}.png`}
             />
             <img
               className="game-content-spells-image"
               alt="Spell 2"
-              src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/spell/${currentSpell2.id}.png`}
+              src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/${currentSpell2.id}.png`}
             />
           </div>
         </div>
@@ -199,6 +205,7 @@ class GameInfo extends Component {
   }
 
   getParticipantsContent() {
+    const { version } = store.getState();
     const { currentSummoner, game } = this.state;
     const { participants } = game.info;
 
@@ -231,6 +238,10 @@ class GameInfo extends Component {
         </span>
       );
 
+      if (participants[i].championName === "FiddleSticks") {
+        participants[i].championName = "Fiddlesticks";
+      }
+
       if (i < 5) {
         team1.push(
           <li
@@ -243,7 +254,7 @@ class GameInfo extends Component {
             <img
               className="game-content-champion-name"
               alt="Main Champion"
-              src={`https://ddragon.leagueoflegends.com/cdn/11.13.1/img/champion/${participants[i].championName}.png`}
+              src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${participants[i].championName}.png`}
             />
             {currentComponent1}
           </li>
@@ -260,7 +271,7 @@ class GameInfo extends Component {
             <img
               className="game-content-champion-name"
               alt="Main Champion"
-              src={`https://ddragon.leagueoflegends.com/cdn/11.13.1/img/champion/${participants[i].championName}.png`}
+              src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${participants[i].championName}.png`}
             />
             {currentComponent}
           </li>

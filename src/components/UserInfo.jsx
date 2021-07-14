@@ -16,13 +16,14 @@ class UserInfo extends Component {
   }
 
   render() {
+    const { version } = store.getState();
     const { profileIconId, name, summonerLevel } = this.state;
 
     return (
       <div className="profile-container">
         <img
           className="profile-img"
-          src={`http://ddragon.leagueoflegends.com/cdn/11.11.1/img/profileicon/${profileIconId}.png`}
+          src={`http://ddragon.leagueoflegends.com/cdn/${version}/img/profileicon/${profileIconId}.png`}
           alt="Summoner Icon"
           width="128px"
         />

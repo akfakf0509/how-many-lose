@@ -1,5 +1,7 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import "./App.css";
+import PropTypes from "prop-types";
 import ResultRoot from "./Components/ResultRoot";
 import SearchBar from "./Components/SearchBar";
 import store from "./store";
@@ -13,6 +15,9 @@ class App extends Component {
   }
 
   componentDidMount() {
+    const { versionPatch } = this.props;
+
+    versionPatch();
     store.subscribe(() => {
       if (store.getState().summoner) {
         this.setState({ mode: "INFORMATION" });
@@ -41,4 +46,16 @@ class App extends Component {
   }
 }
 
-export default App;
+App.propTypes = {
+  versionPatch: PropTypes.func.isRequired,
+};
+
+export default connect(null, (dispatch) => ({
+  versionPatch: () => {
+    fetch("https://ddragon.leagueoflegends.com/api/versions.json")
+      .then((res) => res.json())
+      .then((res) => {
+        dispatch({ type: "VERSION", version: res[0] });
+      });
+  },
+}))(App);

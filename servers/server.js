@@ -47,12 +47,16 @@ app.use("/riot-api/summoner/info", (req, res) => {
         };
 
         request(options, (e, r) => {
-          if (r) {
+          const result = JSON.parse(r);
+
+          if (result && !result.status) {
             db.query(
               "INSERT INTO summoners VALUES (?, ?, ?, ?, ?, ?, ?)",
-              Object.values(JSON.parse(r.body))
+              Object.values(result)
             );
-            res.json(JSON.parse(r.body));
+            res.json(result);
+          } else if (result.status) {
+            res.json(result);
           }
         });
       }
@@ -69,7 +73,9 @@ app.use("/riot-api/summoner/games", (req, res) => {
   };
 
   request(options, (e, r) => {
-    res.json(JSON.parse(r.body));
+    if (r) {
+      res.json(JSON.parse(r.body));
+    }
   });
 });
 
@@ -91,12 +97,16 @@ app.use("/riot-api/game", (req, res) => {
         request(options, (e, r) => {
           const result = JSON.parse(r.body);
 
-          db.query("INSERT INTO matches VALUES (?, ?, ?)", [
-            result.metadata.dataVersion,
-            result.metadata.matchId,
-            JSON.stringify(result),
-          ]);
-          res.json(result);
+          if (result && !result.status) {
+            db.query("INSERT INTO matches VALUES (?, ?, ?)", [
+              result.metadata.dataVersion,
+              result.metadata.matchId,
+              JSON.stringify(result),
+            ]);
+            res.json(result);
+          } else if (result.status) {
+            res.json(result);
+          }
         });
       }
     }
