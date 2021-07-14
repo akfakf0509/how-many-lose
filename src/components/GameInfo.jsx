@@ -81,7 +81,9 @@ class GameInfo extends Component {
           />
         );
       } else {
-        currentComponent[i] = <div className="game-content-info-item" />;
+        currentComponent[i] = (
+          <div key={i} className="game-content-info-item" />
+        );
       }
     }
 
@@ -157,7 +159,7 @@ class GameInfo extends Component {
     const { currentSummoner } = this.state;
     const { summonerJSON } = this.props;
 
-    let currentComponent;
+    let currentComponent = "Spell is null";
     let currentSpell1;
     let currentSpell2;
 
@@ -175,18 +177,18 @@ class GameInfo extends Component {
           <img
             className="game-content-main-champion-image"
             alt="Main Champion"
-            src={`https://ddragon.leagueoflegends.com/cdn/11.13.1/img/champion/${currentSummoner.championName}.png`}
+            src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/champion/${currentSummoner.championName}.png`}
           />
           <div className="game-content-spells">
             <img
               className="game-content-spells-image"
               alt="Spell 1"
-              src={`https://ddragon.leagueoflegends.com/cdn/11.13.1/img/spell/${currentSpell1.id}.png`}
+              src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/spell/${currentSpell1.id}.png`}
             />
             <img
               className="game-content-spells-image"
               alt="Spell 2"
-              src={`https://ddragon.leagueoflegends.com/cdn/11.13.1/img/spell/${currentSpell2.id}.png`}
+              src={`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/spell/${currentSpell2.id}.png`}
             />
           </div>
         </div>
