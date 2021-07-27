@@ -39,7 +39,7 @@ class ResultRoot extends Component {
           }}
           className="btn-back"
         >
-          <FontAwesomeIcon icon={faChevronLeft} size="3x" color="#333" />
+          <FontAwesomeIcon icon={faChevronLeft} size="3x" color="white" />
         </button>
         <div>
           <h1>Why You Lose?</h1>

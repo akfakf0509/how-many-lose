@@ -6,7 +6,7 @@ const db = require("./config/db");
 
 const app = express();
 const port = process.env.port || 3001;
-const apiKey = "RGAPI-43689ed5-86f6-4e41-9576-21a48c27bcfe";
+const apiKey = "RGAPI-29b68971-15f5-45ea-9bc4-3eb47000e97d";
 
 app.use(cors());
 app.use(bodyParser.json());
